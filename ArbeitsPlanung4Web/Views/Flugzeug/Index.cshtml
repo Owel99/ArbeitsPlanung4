@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ArbeitsPlanung4Lib.Flugzeug>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kennzeichen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Typ)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kennzeichen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Typ)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FlugzeugId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FlugzeugId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FlugzeugId })
+        </td>
+    </tr>
+}
+
+</table>

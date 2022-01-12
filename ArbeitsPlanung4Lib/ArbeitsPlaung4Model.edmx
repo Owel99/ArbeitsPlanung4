@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ArbeitsPlaung4Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ArbeitsPlaung4ModelStoreContainer">
+    <EntitySet Name="BenutzerSet" EntityType="ArbeitsPlaung4Model.Store.BenutzerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FlugzeugSet" EntityType="ArbeitsPlaung4Model.Store.FlugzeugSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArbeitSet" EntityType="ArbeitsPlaung4Model.Store.ArbeitSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FlugzeugArbeit" EntityType="ArbeitsPlaung4Model.Store.FlugzeugArbeit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="kannMachen" EntityType="ArbeitsPlaung4Model.Store.kannMachen" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="darfMachen" EntityType="ArbeitsPlaung4Model.Store.darfMachen" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_FlugzeugArbeit_Flugzeug" Association="ArbeitsPlaung4Model.Store.FK_FlugzeugArbeit_Flugzeug">
+      <End Role="Flugzeug" EntitySet="FlugzeugSet" />
+      <End Role="FlugzeugArbeit" EntitySet="FlugzeugArbeit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlugzeugArbeit_Arbeit" Association="ArbeitsPlaung4Model.Store.FK_FlugzeugArbeit_Arbeit">
+      <End Role="Arbeit" EntitySet="ArbeitSet" />
+      <End Role="FlugzeugArbeit" EntitySet="FlugzeugArbeit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_kannMachen_Benutzer" Association="ArbeitsPlaung4Model.Store.FK_kannMachen_Benutzer">
+      <End Role="Benutzer" EntitySet="BenutzerSet" />
+      <End Role="kannMachen" EntitySet="kannMachen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_kannMachen_Arbeit" Association="ArbeitsPlaung4Model.Store.FK_kannMachen_Arbeit">
+      <End Role="Arbeit" EntitySet="ArbeitSet" />
+      <End Role="kannMachen" EntitySet="kannMachen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_darfMachen_Benutzer" Association="ArbeitsPlaung4Model.Store.FK_darfMachen_Benutzer">
+      <End Role="Benutzer" EntitySet="BenutzerSet" />
+      <End Role="darfMachen" EntitySet="darfMachen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_darfMachen_Arbeit" Association="ArbeitsPlaung4Model.Store.FK_darfMachen_Arbeit">
+      <End Role="Arbeit" EntitySet="ArbeitSet" />
+      <End Role="darfMachen" EntitySet="darfMachen" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BenutzerSet">
+    <Key>
+      <PropertyRef Name="BenutzerId" />
+    </Key>
+    <Property Name="BenutzerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vorname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nachname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="istAdmin" Type="bit" Nullable="false" />
+    <Property Name="istBenutzer" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FlugzeugSet">
+    <Key>
+      <PropertyRef Name="FlugzeugId" />
+    </Key>
+    <Property Name="FlugzeugId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kennzeichen" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Typ" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArbeitSet">
+    <Key>
+      <PropertyRef Name="ArbeitId" />
+    </Key>
+    <Property Name="ArbeitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FlugzeugArbeit">
+    <Key>
+      <PropertyRef Name="istAnwendbar_FlugzeugId" />
+      <PropertyRef Name="hatArbeit_ArbeitId" />
+    </Key>
+    <Property Name="istAnwendbar_FlugzeugId" Type="int" Nullable="false" />
+    <Property Name="hatArbeit_ArbeitId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kannMachen">
+    <Key>
+      <PropertyRef Name="kannGemachtWerden_BenutzerId" />
+      <PropertyRef Name="kannMachen_ArbeitId" />
+    </Key>
+    <Property Name="kannGemachtWerden_BenutzerId" Type="int" Nullable="false" />
+    <Property Name="kannMachen_ArbeitId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="darfMachen">
+    <Key>
+      <PropertyRef Name="darfGemachtWerden_BenutzerId" />
+      <PropertyRef Name="darfMachen_ArbeitId" />
+    </Key>
+    <Property Name="darfGemachtWerden_BenutzerId" Type="int" Nullable="false" />
+    <Property Name="darfMachen_ArbeitId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_FlugzeugArbeit_Flugzeug">
+    <End Role="Flugzeug" Type="ArbeitsPlaung4Model.Store.FlugzeugSet" Multiplicity="1" />
+    <End Role="FlugzeugArbeit" Type="ArbeitsPlaung4Model.Store.FlugzeugArbeit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flugzeug">
+        <PropertyRef Name="FlugzeugId" />
+      </Principal>
+      <Dependent Role="FlugzeugArbeit">
+        <PropertyRef Name="istAnwendbar_FlugzeugId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlugzeugArbeit_Arbeit">
+    <End Role="FlugzeugArbeit" Type="ArbeitsPlaung4Model.Store.FlugzeugArbeit" Multiplicity="*" />
+    <End Role="Arbeit" Type="ArbeitsPlaung4Model.Store.ArbeitSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Arbeit">
+        <PropertyRef Name="ArbeitId" />
+      </Principal>
+      <Dependent Role="FlugzeugArbeit">
+        <PropertyRef Name="hatArbeit_ArbeitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_kannMachen_Benutzer">
+    <End Role="Benutzer" Type="ArbeitsPlaung4Model.Store.BenutzerSet" Multiplicity="1" />
+    <End Role="kannMachen" Type="ArbeitsPlaung4Model.Store.kannMachen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Benutzer">
+        <PropertyRef Name="BenutzerId" />
+      </Principal>
+      <Dependent Role="kannMachen">
+        <PropertyRef Name="kannGemachtWerden_BenutzerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_kannMachen_Arbeit">
+    <End Role="kannMachen" Type="ArbeitsPlaung4Model.Store.kannMachen" Multiplicity="*" />
+    <End Role="Arbeit" Type="ArbeitsPlaung4Model.Store.ArbeitSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Arbeit">
+        <PropertyRef Name="ArbeitId" />
+      </Principal>
+      <Dependent Role="kannMachen">
+        <PropertyRef Name="kannMachen_ArbeitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_darfMachen_Benutzer">
+    <End Role="Benutzer" Type="ArbeitsPlaung4Model.Store.BenutzerSet" Multiplicity="1" />
+    <End Role="darfMachen" Type="ArbeitsPlaung4Model.Store.darfMachen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Benutzer">
+        <PropertyRef Name="BenutzerId" />
+      </Principal>
+      <Dependent Role="darfMachen">
+        <PropertyRef Name="darfGemachtWerden_BenutzerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_darfMachen_Arbeit">
+    <End Role="darfMachen" Type="ArbeitsPlaung4Model.Store.darfMachen" Multiplicity="*" />
+    <End Role="Arbeit" Type="ArbeitsPlaung4Model.Store.ArbeitSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Arbeit">
+        <PropertyRef Name="ArbeitId" />
+      </Principal>
+      <Dependent Role="darfMachen">
+        <PropertyRef Name="darfMachen_ArbeitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ArbeitsPlaung4Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ArbeitsPlaung4ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BenutzerSet" EntityType="ArbeitsPlaung4Model.Benutzer" />
+          <EntitySet Name="FlugzeugSet" EntityType="ArbeitsPlaung4Model.Flugzeug" />
+          <EntitySet Name="ArbeitSet" EntityType="ArbeitsPlaung4Model.Arbeit" />
+          <AssociationSet Name="FlugzeugArbeit" Association="ArbeitsPlaung4Model.FlugzeugArbeit">
+            <End Role="Flugzeug" EntitySet="FlugzeugSet" />
+            <End Role="Arbeit" EntitySet="ArbeitSet" />
+          </AssociationSet>
+          <AssociationSet Name="kannMachen" Association="ArbeitsPlaung4Model.kannMachen">
+            <End Role="Benutzer" EntitySet="BenutzerSet" />
+            <End Role="Arbeit" EntitySet="ArbeitSet" />
+          </AssociationSet>
+          <AssociationSet Name="darfMachen" Association="ArbeitsPlaung4Model.darfMachen">
+            <End Role="Benutzer" EntitySet="BenutzerSet" />
+            <End Role="Arbeit" EntitySet="ArbeitSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="BenutzerId" />
+          </Key>
+          <Property Name="BenutzerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vorname" Type="String" Nullable="false" />
+          <Property Name="Nachname" Type="String" Nullable="false" />
+          <Property Name="istAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="istBenutzer" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="kannMachen" Relationship="ArbeitsPlaung4Model.kannMachen" FromRole="Benutzer" ToRole="Arbeit" />
+          <NavigationProperty Name="darfMachen" Relationship="ArbeitsPlaung4Model.darfMachen" FromRole="Benutzer" ToRole="Arbeit" />
+        </EntityType>
+        <EntityType Name="Flugzeug">
+          <Key>
+            <PropertyRef Name="FlugzeugId" />
+          </Key>
+          <Property Name="FlugzeugId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kennzeichen" Type="String" Nullable="false" />
+          <Property Name="Typ" Type="String" Nullable="false" />
+          <NavigationProperty Name="hatArbeit" Relationship="ArbeitsPlaung4Model.FlugzeugArbeit" FromRole="Flugzeug" ToRole="Arbeit" />
+        </EntityType>
+        <EntityType Name="Arbeit">
+          <Key>
+            <PropertyRef Name="ArbeitId" />
+          </Key>
+          <Property Name="ArbeitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="istAnwendbar" Relationship="ArbeitsPlaung4Model.FlugzeugArbeit" FromRole="Arbeit" ToRole="Flugzeug" />
+          <NavigationProperty Name="kannGemachtWerden" Relationship="ArbeitsPlaung4Model.kannMachen" FromRole="Arbeit" ToRole="Benutzer" />
+          <NavigationProperty Name="darfGemachtWerden" Relationship="ArbeitsPlaung4Model.darfMachen" FromRole="Arbeit" ToRole="Benutzer" />
+        </EntityType>
+        <Association Name="FlugzeugArbeit">
+          <End Type="ArbeitsPlaung4Model.Flugzeug" Role="Flugzeug" Multiplicity="*" />
+          <End Type="ArbeitsPlaung4Model.Arbeit" Role="Arbeit" Multiplicity="*" />
+        </Association>
+        <Association Name="kannMachen">
+          <End Type="ArbeitsPlaung4Model.Benutzer" Role="Benutzer" Multiplicity="*" />
+          <End Type="ArbeitsPlaung4Model.Arbeit" Role="Arbeit" Multiplicity="*" />
+        </Association>
+        <Association Name="darfMachen">
+          <End Type="ArbeitsPlaung4Model.Benutzer" Role="Benutzer" Multiplicity="*" />
+          <End Type="ArbeitsPlaung4Model.Arbeit" Role="Arbeit" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArbeitsPlaung4ModelStoreContainer" CdmEntityContainer="ArbeitsPlaung4ModelContainer">
+    <EntitySetMapping Name="BenutzerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ArbeitsPlaung4Model.Benutzer)">
+        <MappingFragment StoreEntitySet="BenutzerSet">
+          <ScalarProperty Name="BenutzerId" ColumnName="BenutzerId" />
+          <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+          <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+          <ScalarProperty Name="istAdmin" ColumnName="istAdmin" />
+          <ScalarProperty Name="istBenutzer" ColumnName="istBenutzer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlugzeugSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ArbeitsPlaung4Model.Flugzeug)">
+        <MappingFragment StoreEntitySet="FlugzeugSet">
+          <ScalarProperty Name="FlugzeugId" ColumnName="FlugzeugId" />
+          <ScalarProperty Name="Kennzeichen" ColumnName="Kennzeichen" />
+          <ScalarProperty Name="Typ" ColumnName="Typ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArbeitSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ArbeitsPlaung4Model.Arbeit)">
+        <MappingFragment StoreEntitySet="ArbeitSet">
+          <ScalarProperty Name="ArbeitId" ColumnName="ArbeitId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FlugzeugArbeit" TypeName="ArbeitsPlaung4Model.FlugzeugArbeit" StoreEntitySet="FlugzeugArbeit">
+      <EndProperty Name="Flugzeug">
+        <ScalarProperty Name="FlugzeugId" ColumnName="istAnwendbar_FlugzeugId" />
+      </EndProperty>
+      <EndProperty Name="Arbeit">
+        <ScalarProperty Name="ArbeitId" ColumnName="hatArbeit_ArbeitId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="kannMachen" TypeName="ArbeitsPlaung4Model.kannMachen" StoreEntitySet="kannMachen">
+      <EndProperty Name="Benutzer">
+        <ScalarProperty Name="BenutzerId" ColumnName="kannGemachtWerden_BenutzerId" />
+      </EndProperty>
+      <EndProperty Name="Arbeit">
+        <ScalarProperty Name="ArbeitId" ColumnName="kannMachen_ArbeitId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="darfMachen" TypeName="ArbeitsPlaung4Model.darfMachen" StoreEntitySet="darfMachen">
+      <EndProperty Name="Benutzer">
+        <ScalarProperty Name="BenutzerId" ColumnName="darfGemachtWerden_BenutzerId" />
+      </EndProperty>
+      <EndProperty Name="Arbeit">
+        <ScalarProperty Name="ArbeitId" ColumnName="darfMachen_ArbeitId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

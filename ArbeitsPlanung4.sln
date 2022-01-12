@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArbeitsPlanung4Lib", "ArbeitsPlanung4Lib\ArbeitsPlanung4Lib.csproj", "{855BCA19-C376-47B2-8F70-1F6C762D21A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArbeitsPlanung4Web", "ArbeitsPlanung4Web\ArbeitsPlanung4Web.csproj", "{4BA7F699-C577-4135-822D-9C0D8C75B50D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{855BCA19-C376-47B2-8F70-1F6C762D21A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855BCA19-C376-47B2-8F70-1F6C762D21A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855BCA19-C376-47B2-8F70-1F6C762D21A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855BCA19-C376-47B2-8F70-1F6C762D21A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA7F699-C577-4135-822D-9C0D8C75B50D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA7F699-C577-4135-822D-9C0D8C75B50D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA7F699-C577-4135-822D-9C0D8C75B50D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA7F699-C577-4135-822D-9C0D8C75B50D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B222973A-26EF-4244-8B00-A65888650B52}
+	EndGlobalSection
+EndGlobal

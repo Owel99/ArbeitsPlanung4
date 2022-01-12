@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ArbeitsPlanung4Lib.Benutzer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Vorname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nachname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.istAdmin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.istBenutzer)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vorname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nachname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.istAdmin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.istBenutzer)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BenutzerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BenutzerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BenutzerId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe14c7e85c284eb2a96b0cb9511b8946" Name="Diagram1" >
+        <EntityTypeShape EntityType="ArbeitsPlaung4Model.Benutzer" Width="1.5" PointX="15" PointY="5.125" />
+        <EntityTypeShape EntityType="ArbeitsPlaung4Model.Flugzeug" Width="1.5" PointX="9.375" PointY="5.125" />
+        <EntityTypeShape EntityType="ArbeitsPlaung4Model.Arbeit" Width="1.5" PointX="12.125" PointY="5.125" />
+        <AssociationConnector Association="ArbeitsPlaung4Model.FlugzeugArbeit" />
+        <AssociationConnector Association="ArbeitsPlaung4Model.kannMachen" />
+        <AssociationConnector Association="ArbeitsPlaung4Model.darfMachen" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
